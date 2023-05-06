@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from "dotenv";
+import cors from "cors";
 import mongoose from 'mongoose';
 import userRoute from "./routes/user.js";
 import productRoute from "./routes/product.js";
@@ -37,7 +38,7 @@ mongoose.connection.on("disconnected", ()=> {
   console.log("MongoDB disconnected")
 });
 
-
+app.use(cors())
 app.use(express.json())
 app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
